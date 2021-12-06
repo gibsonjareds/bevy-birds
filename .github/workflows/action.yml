@@ -5,45 +5,45 @@ jobs:
     name: Bevy Birds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install latest nightly
-        uses: actions-rs/toolchain@v1
-        with:
+    - uses: actions/checkout@v2
+    - name: Install latest nightly
+      uses: actions-rs/toolchain@v1
+      with:
           toolchain: nightly
           override: true
           components: rustfmt, clippy
-      -name: Run cargo check
-       uses: action-rs/cargo@v1
-       with:
+    - name: Run cargo check
+      uses: action-rs/cargo@v1
+      with:
          command: check
 
   test: 
     name: Test Suite
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
           profile: minimal
           toolchain: nightly
           override: true
-      - uses: actions-rs/cargo@v1
-        with:
+    - uses: actions-rs/cargo@v1
+      with:
           command: test
 
   fmt:
     name: Rustfmt
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
           profile: minimal
           toolchain: nightly
           override: true
-      - run: rustup component add rustfmt
-      - uses: actions-rs/cargo@v1
-        with:
+    - run: rustup component add rustfmt
+    - uses: actions-rs/cargo@v1
+      with:
           command: fmt
           args: --all -- --check
 
@@ -51,15 +51,15 @@ jobs:
     name: Clippy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
           profile: minimal
           toolchain: nightly
           override: true
-      - run: rustup component add clippy
-      - uses: actions-rs/cargo@v1
-        with:
+    - run: rustup component add clippy
+    - uses: actions-rs/cargo@v1
+      with:
           command: clippy
           args: -- -D warnings
 
